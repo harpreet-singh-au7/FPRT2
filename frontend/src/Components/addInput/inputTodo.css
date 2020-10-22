@@ -1,0 +1,21 @@
+.inputTodo_card {
+  padding-bottom: 3px;
+  margin: 6px;
+  width: 285px;
+  height: 50px;
+}
+.inputTodo_card {
+  height: 50px !important;
+}
+.inputp {
+  margin-left: 7px;
+  padding: 5px;
+  justify-content: center;
+}
+.addButton:hover {
+  background: #5aac44 !important;
+  color: #fff;
+}
+.addButton_div {
+  margin: 7px !important;
+}

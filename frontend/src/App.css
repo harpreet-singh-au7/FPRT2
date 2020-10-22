@@ -1,0 +1,7 @@
+.App_todo {
+  display: flex;
+  flex: 1;
+  margin-top: 150px;
+  min-height: 100vh;
+  background-color: honeydew;
+}

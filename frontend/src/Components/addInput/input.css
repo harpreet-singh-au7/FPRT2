@@ -1,0 +1,17 @@
+.addInput_button {
+  padding: 7px;
+  margin: 3px;
+  background-color: yellowgreen !important;
+}
+.addInput {
+  margin-top: 12px;
+}
+.addInput_text {
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  margin: 3px;
+  text-align: center;
+}
+.addInput_button:hover {
+  background-color: lightsalmon;
+}

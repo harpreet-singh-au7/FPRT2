@@ -1,0 +1,13 @@
+.Container {
+  display: flex;
+  margin-left: 2px;
+}
+.Container-box {
+  flex-grow: 1;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.input:focus {
+  margin: 3px;
+  background: #ddd;
+}

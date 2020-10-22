@@ -1,0 +1,12 @@
+.card_blank {
+  padding: 7px !important;
+  margin: 6px !important;
+  background-color: lightgray !important;
+}
+.drop_card {
+  margin-top: 4px;
+}
+.list_background {
+  min-width: 300px;
+  margin-left: 2vw;
+}
