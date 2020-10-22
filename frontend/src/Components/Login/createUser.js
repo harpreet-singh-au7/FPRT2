@@ -160,7 +160,7 @@ function Createuser() {
                   type="submit"
                   className="login_SigninButton"
                 >
-                  {loading ? <p>Loading ... </p> : "Create account on Amazon"}
+                  {loading ? <p>Loading ... </p> : "Create account on Hub"}
                 </button>
               </>
             )}

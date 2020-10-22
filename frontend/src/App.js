@@ -1,26 +1,32 @@
 import React,{useState,useEffect} from 'react';
 import Lists from "./Components/Lists"
 import storeData from "./Store"
-import StoreAPI from "./Store/storeAPI"
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import './App.css';
 import InputTodo from './Components/addInput/inputTodo';
+import Pusher from "pusher-js";
+import { useDispatch, useSelector } from 'react-redux'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory,
+ 
 } from "react-router-dom";
 import Createuser from "./Components/Login/createUser"
 import Login from "./Components/Login"
 import { useStateValue } from './Redux/StateProvider';
 import Header from './Components/Header';
+import UserProfile from './Components/userProfile';
 
 
 function App() {
-
-const [{user,token},dispatch] = useStateValue()  
+  const dispatch = useDispatch()
+  const user = useSelector(selectUser)
+const [{user,token,card}] = useStateValue()  
 const [data, setData] = useState(storeData)
+const [items, setItems] = useState([]);
+
+
 const addTodo = (title,listId) => {
   const newTodoId =Math.random()*1009
   const newTodo= {
@@ -39,6 +45,22 @@ const addTodo = (title,listId) => {
   }
   setData(newState)
 }
+useEffect(() => {
+  var pusher = new Pusher("77134266896edffa12a6", {
+    cluster: "ap2",
+  });
+
+  var channel = pusher.subscribe("items");
+  channel.bind("inserted", (newItems) => {
+    alert(JSON.stringify(newItems));
+    setItems([...items, newItems]);
+  });
+
+  return () => {
+    channel.unbind_all();
+    channel.unsubscribe();
+  };
+}, [items]);
 
 useEffect(() => {
   const unsubscribe = (() => {
@@ -62,7 +84,7 @@ useEffect(() => {
     //cleanup once logout
     unsubscribe();
   };
-}, [token]);
+}, [token,Login]);
 
 const addTodoList = (title) =>{
   const newTodoListID=Math.random()*807
@@ -142,27 +164,25 @@ const onDrag=(result)=>{
   }
 };
   return (
-    
+    <Router>
     <div className="app">
-      <Router>
+      
        <Switch>
          <>
-            <Route  path="/createuser">
-              <Createuser />
-            </Route>
-            <Route  path="/login">
-              <Login />
-            </Route>
+         
+            <Route  path="/createuser" component={Createuser}/>
+            <Route  path="/login" component={Login} />
+            <Route  path="/profile" component={UserProfile} />
             </>
           </Switch> 
-          </Router>
+         
           
           <div className="header_present">
-          <Router>
+          
           <Switch >
-            <Route exact path="/">
+            <Route exact path="/" >
           <Header />
-    <StoreAPI.Provider value={{addTodo, addTodoList,updateTitle}}>
+   
       <DragDropContext onDragEnd={onDrag}>
         <Droppable droppableId="main" type="list" direction="horizontal">
           {(provided)=>(
@@ -179,12 +199,14 @@ const onDrag=(result)=>{
     
     </Droppable>
     </DragDropContext>
-    </StoreAPI.Provider>
+ 
     </Route>
     </Switch>
-    </Router>
+    
     </div>
     </div>
+  </Router>
+    
    
   );
 }

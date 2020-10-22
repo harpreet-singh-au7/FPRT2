@@ -5,15 +5,17 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
 import { StateProvider } from "./Redux/StateProvider";
+import { Provider } from 'react-redux';
+import store from './app/store';
 import reducer, { initialState } from "./Redux/reducer";
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
+    <Provider store={store} initialState={initialState} reducer={reducer}>
       <Router>
     <App />
     </Router>
-    </StateProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
