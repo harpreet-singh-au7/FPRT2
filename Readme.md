@@ -1,5 +1,4 @@
-THIS is a Fprt repo test
-Backend link -
-https://todos-ba.herokuapp.com/
+# FPRT2
 
-Front end Link -https://todo-b6440.web.app/
+Backend Link - https://todos-ba.herokuapp.com/
+Frontend Link - https://todo-b6440.web.app/
